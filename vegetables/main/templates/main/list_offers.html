@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    My offers
+{% endblock %}
+
+{% block body %}
+    <form class="in-line" action="" method="post">
+        {% csrf_token %}
+        <p class="in-line left"><input class="new-product" type="submit" value="New product" name="New-product"></p>
+        <p class="in-line left"><input class="new-product" type="submit" value="Back" name="Back"></p>
+    </form>
+    {% if crops %}
+        {% for crop in crops %}
+            <div class="container column">
+                {% if crop.image %}
+                    <img class="crop-photo" src="{{ crop.image.url }}">
+                {% else %}
+                    <img class="crop-photo" src="{% static 'no_image/no_crop_image.png' %}">
+                {% endif %}
+                <p class="description">{{ crop.name }}: {{ crop.price }}$</p>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <p><input class="submit" type="submit" value="Edit" name="Edit{{ crop.id }}"></p>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Nothing...</p>
+    {% endif %}
+{% endblock %}

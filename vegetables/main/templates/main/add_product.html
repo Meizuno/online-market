@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+
+{% block title %}New product{% endblock %}
+
+{% block body %}
+    <h1>New product</h1>
+    <form class="in-line" action="" method="post" enctype="multipart/form-data">
+        {{ add_product_form.as_p }}
+        {% csrf_token %}
+        <p class="in-line"><input class="submit" type="submit" value="Submit" name="Submit"></p>
+    </form>
+    <form class="in-line" action="" method="post">
+        {% csrf_token %}
+        <p class="in-line"><input class="submit" type="submit" value="Back" name="Back"></p>
+    </form>
+{% endblock %}

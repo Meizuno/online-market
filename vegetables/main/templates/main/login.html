@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Log in
+{% endblock %}
+
+{% block body %}
+    <h1>Log in</h1>
+    <p>Please, login using the following form:</p>
+    <form class="in-line" action="" method="post">
+        {{ login_form.as_p }}
+        {% csrf_token %}
+        <p class="in-line"><input class="submit" type="submit" value="Login" name="Login"></p>
+    </form>
+    <form class="in-line" action="" method="post">
+        {% csrf_token %}
+        <p class="in-line"><input class="submit" type="submit" value="Registration" name="Registration"></p>
+        <p class="in-line"><input class="submit" type="submit" value="Back" name="Back"></p>
+    </form>
+{% endblock %}

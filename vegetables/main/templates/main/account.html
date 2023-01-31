@@ -1,0 +1,59 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <table>
+        {% for data in user %}
+        <tr>
+            <td>
+                {% if data.image %}
+                    <img class="profile-photo" class="profile" src="{{ data.image.url }}" alt="connect">
+                {% else %}
+                    <img class="profile-photo" src="{% static 'no_image/no_user_image.jpg' %}" alt="connect">
+                {% endif %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <p><input class="button submit" type="submit" value="Log out" name="Log out"></p>
+                    <p><input class="submit" type="submit" value="Edit" name="Edit"></p>
+                    <p><input class="submit" type="submit" value="Back" name="Back"></p>
+                </form>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>First name:</td>
+                        <td><b>{{ data.firstName }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Last name:</td>
+                        <td><b>{{ data.lastName }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><b>{{ data.email }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td><b>{{ data.phone }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>City:</td>
+                        <td><b>{{ data.city }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td><b>{{ data.address }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><b>{{ data.password }}</b></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

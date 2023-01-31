@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Edit offer
+{% endblock %}
+
+{% block body %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ edit_offer_form.as_p }}
+        {% csrf_token %}
+        <p class="in-line"><input class="submit" type="submit" value="Edit" name="Edit"></p>
+        <p class="in-line"><input class="submit" type="submit" value="Delete" name="Delete"></p>
+        <p class="in-line"><input class="submit" type="submit" value="Back" name="Back"></p>
+    </form>
+
+{% endblock %}

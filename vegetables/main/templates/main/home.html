@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block search %}
+        <li>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input class="search" type="text" name="Search" placeholder="Search..">
+                <button class="enter" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </li>
+{% endblock %}
+
+{% block body %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p class="in-line left"><input type="submit" value="All" name="All" class="filter"></p>
+        <p class="in-line left"><input type="submit" value="Fruit" name="Fruit" class="filter"></p>
+        <p class="in-line left"><input type="submit" value="Vegetables" name="Vegetables" class="filter"></p>
+    </form>
+    {% for crop in crops %}
+        <div class="container column">
+            {% if crop.image %}
+                <img class="crop-photo" src="{{ crop.image.url }}">
+            {% else %}
+                <img class="crop-photo" src="{% static 'no_image/no_crop_image.png' %}">
+            {% endif %}
+            <p class="description">{{ crop.name }}: {{ crop.price }}$</p>
+            <form action="" method="post">
+                {% csrf_token %}
+                <p><input class="submit" type="submit" value="Buy" name="Buy"></p>
+            </form>
+        </div>
+    {% endfor %}
+{% endblock %}

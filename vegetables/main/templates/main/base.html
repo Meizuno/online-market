@@ -1,0 +1,42 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %}Page{% endblock %}</title>
+</head>
+<body>
+    <div class="center top-radius">
+        <p class="home"><a class="logo" href="{% url 'home' %}">Market</a></p>
+        <ul>
+            <li>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <button class="cart" type="submit" name="Cart"><i class="fa fa-shopping-cart"></i></button>
+                </form>
+            </li>
+            {% if session %}
+                <li>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <button class="log-out" type="submit" name="Log-out"><i class="fa fa-sign-out"></i></button>
+                    </form>
+                </li>
+                <li><a href="{% url 'account' %}">{{ session }}</a></li>
+                <li><a href="{% url 'list_offers' %}">My offers</a><br/></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Log in</a></li>
+            {% endif %}
+            {% block search %}{% endblock %}
+        </ul>
+    </div>
+    <div class="center white down-radius">
+    {% block body %}{% endblock %}
+    </div>
+</body>
+</html>
