@@ -14,6 +14,11 @@
     <div class="center top-radius">
         <p class="home"><a class="logo" href="{% url 'home' %}">Market</a></p>
         <ul>
+            {% if count %}
+                <li>
+                    <div class="cart-count"><b>{{ count }}</b></div>
+                </li>
+            {% endif %}
             <li>
                 <form action="" method="post">
                     {% csrf_token %}

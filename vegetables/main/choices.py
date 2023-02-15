@@ -3,7 +3,7 @@ KIND =(
     ("fruit", "Fruit")
 )
 
-AMOUNT =(
+TYPE =(
     ("kg", "kg"),
     ("piece", "piece")
 )

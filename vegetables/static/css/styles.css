@@ -104,11 +104,6 @@ body{
   text-decoration: none;
 }
 
-td {
-  padding: 5px;
-  font-size: 110%;
-}
-
 .profile-photo{
   margin: 10px 20px 10px -20px;
   border-radius: 50%;
@@ -140,6 +135,17 @@ td {
   color: white;
   padding: 7px;
   margin: -5px 0px;
+  border-radius: 7px;
+}
+
+.delete {
+  width: 100px;
+  font-size: 100%;
+  border-style: none;
+  background-color: #BB0000;
+  color: white;
+  padding: 7px;
+  margin: -5px -20px -5px -20px;
   border-radius: 7px;
 }
 
@@ -225,6 +231,7 @@ input[type=file]::file-selector-button:hover {
 .cart{
   display: inline;
   border: none;
+  z-index: 1;
   font-size: 130%;
   margin-top: -15px;
   padding: 15px;
@@ -253,3 +260,102 @@ input[type=file]::file-selector-button:hover {
   background-color: #00AA00;
   color: white;
 }
+
+.cart-object{
+  width: 100%;
+  height: auto;
+}
+
+.cart-item{
+  text-align: center;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+td{
+  padding: 5px;
+  font-size: 110%;
+}
+
+th{
+  font-size: 110%;
+}
+
+.cart-photo{
+  margin-left: -20px;
+  margin-right: -20px;
+  width: 100px;
+  height: 100px;
+}
+
+.cart-amount{
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+  font-size: 90%;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.cart-block-amount{
+  display: flex;
+  justify-content: center;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+.cart-edit-amount{
+  font-size: 130%;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-color: #CECECE;
+  border-style: none;
+}
+
+hr {
+  border: none;
+  background-color: black;
+  color: black;
+  border-radius: 5px;
+  height: 3px;
+ }
+
+.total{
+  float: right;
+  font-size: 130%;
+}
+
+.cart-table{
+  width: 100%;
+  text-align: center;
+  border: none;
+}
+
+.cart-count{
+  position: relative;
+  width: auto;
+  height: auto;
+  z-index: 2;
+  padding: 5px;
+  margin-left: -20px;
+  margin-top: -10px;
+  border-radius: 50%;
+  color: white;
+}
+
+.select{
+  height: 25px;
+  width: 30px;
+  background-color: white;
+  font-size: 80%;
+  border: 1px solid #C0C0C0;  
+  border-radius: 20%;
+}
+
+.gray{
+  background-color: #F0F0F0;
+}
+

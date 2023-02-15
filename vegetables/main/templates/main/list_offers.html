@@ -20,6 +20,7 @@
                     <img class="crop-photo" src="{% static 'no_image/no_crop_image.png' %}">
                 {% endif %}
                 <p class="description">{{ crop.name }}: {{ crop.price }}$</p>
+                <p class="description">{{ crop.amount }} {{ crop.quantity_type }}</p>
                 <form action="" method="post">
                     {% csrf_token %}
                     <p><input class="submit" type="submit" value="Edit" name="Edit{{ crop.id }}"></p>

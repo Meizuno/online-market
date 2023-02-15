@@ -1,6 +1,6 @@
 from .models import User, Crop
 from django import forms
-from .choices import KIND, AMOUNT
+from .choices import KIND, TYPE
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -77,23 +77,27 @@ class UserEditForm(forms.ModelForm):
 
 class CropNewForm(forms.ModelForm):
     name = forms.CharField(label="Product", max_length=20, widget=forms.TextInput(attrs={'class': 'cell'}))
-    amount = forms.ChoiceField(label="Amount", choices=AMOUNT, widget=forms.Select(attrs={'class': 'cell'}))
+    amount = forms.IntegerField(label="Amount", widget=forms.NumberInput(attrs={'class': 'cell'}))
+    quantity_type = forms.ChoiceField(label="Type of quantity", choices=TYPE,
+                                      widget=forms.Select(attrs={'class': 'cell'}))
     kind = forms.ChoiceField(label="Kind", choices=KIND, widget=forms.Select(attrs={'class': 'cell'}))
     price = forms.FloatField(label="Price", widget=forms.NumberInput(attrs={'class': 'cell'}))
     image = forms.ImageField(label='You image', required=False)
 
     class Meta:
         model = Crop
-        fields = ('name', 'amount', 'kind', 'price', 'image')
+        fields = ('name', 'amount', 'quantity_type', 'kind', 'price', 'image')
 
 
 class CropEditForm(forms.ModelForm):
     name = forms.CharField(label="Product", max_length=20, widget=forms.TextInput(attrs={'class': 'cell'}))
-    amount = forms.ChoiceField(label="Amount", choices=AMOUNT, widget=forms.Select(attrs={'class': 'cell'}))
+    amount = forms.IntegerField(label="Amount", widget=forms.NumberInput(attrs={'class': 'cell'}))
+    quantity_type = forms.ChoiceField(label="Type of quantity", choices=TYPE,
+                                      widget=forms.Select(attrs={'class': 'cell'}))
     kind = forms.ChoiceField(label="Kind", choices=KIND, widget=forms.Select(attrs={'class': 'cell'}))
     price = forms.FloatField(label="Price", widget=forms.NumberInput(attrs={'class': 'cell'}))
     image = forms.ImageField(label='You image', required=False)
 
     class Meta:
         model = Crop
-        fields = ('name', 'amount', 'kind', 'price', 'image')
+        fields = ('name', 'amount', 'quantity_type', 'kind', 'price', 'image')

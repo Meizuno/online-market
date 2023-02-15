@@ -17,14 +17,16 @@ class Crop(models.Model):
     image = models.ImageField("Foto", null=True, blank=True, upload_to='crop_images')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField("First name", max_length=20)
-    kind = models.CharField("Kind", max_length=20)
-    amount = models.CharField("Amount", max_length=20)
+    kind = models.CharField("Kind", max_length=20, default='vegetable')
+    amount = models.IntegerField("Amount", default=0)
+    quantity_type = models.CharField("Type of quantity", max_length=20, default='kg')
     price = models.FloatField("Price", default=0)
     status = models.BooleanField("Status", default=False)
     editing = models.BooleanField("Status", default=False)
 
 
-class Offer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    crop = models.ForeignKey(Crop, on_delete=models.CASCADE)
-    description = models.TextField("Description", null=True)
+class Cart(models.Model):
+    user = models.CharField(max_length=30, default='')
+    crop = models.ForeignKey(Crop, on_delete=models.CASCADE, default=None)
+    amount = models.IntegerField(default=0)
+    select = models.BooleanField(default=True)

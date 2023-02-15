@@ -32,7 +32,7 @@
             <p class="description">{{ crop.name }}: {{ crop.price }}$</p>
             <form action="" method="post">
                 {% csrf_token %}
-                <p><input class="submit" type="submit" value="Buy" name="Buy"></p>
+                <p><input class="submit" type="submit" value="Buy" name="Buy{{ crop.id }}"></p>
             </form>
         </div>
     {% endfor %}

@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block body %}
+    {% if items %}
+        <table class="cart-table" cellspacing="0" cellpadding="0">
+            <tr class="cart-menu">
+                <th></th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Kind</th>
+                <th>Amount</th>
+                <th>Price</th>
+            </tr>
+            {% for item in items %}
+                {% if item.select %}
+                    <tr class="gray">
+                {% else %}
+                    <tr>
+                {% endif %}
+                    <td>
+                        {% if item.select %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="select" name="Check{{ item.crop.id }}" value="✓">
+                            </form>
+                        {% else %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="select" name="Check{{ item.crop.id }}" value="">
+                            </form>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.crop.image %}
+                            <img class="cart-photo" src="{{ item.crop.image.url }}" alt="connect">
+                        {% else %}
+                            <img class="cart-photo" src="{% static 'no_image/no_crop_image.jpg' %}" alt="connect">
+                        {% endif %}
+                    </td>
+                    <td>{{ item.crop.name }}</td>
+                    <td>{{ item.crop.kind }}</td>
+                    <td>
+                        <form class="cart-block-amount" action="" method="post">
+                            {% csrf_token %}
+                            <p><input class="cart-edit-amount" type="submit" value="−" name="Minus{{ item.crop.id }}"></p>
+                            <p><input class="cart-amount" type="text" value="{{ item.amount }} {{ item.crop.quantity_type }}" name="Amount"></p>
+                            <p><input class="cart-edit-amount" type="submit" value="+" name="Plus{{ item.crop.id }}"></p>
+                        </form>
+                    </td>
+                    <td>{{ item.crop.price|mul:item.amount|floatformat:2 }} $</td>
+                    <td>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <p><input class="delete" type="submit" value="Delete" name="Delete{{ item.crop.id }}"></p>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <hr><p class="total">Total: {{ total|floatformat:2 }} $</p></hr>
+    {% else %}
+        <p>Your cart is empty...</p>
+    {% endif %}
+{% endblock %}
